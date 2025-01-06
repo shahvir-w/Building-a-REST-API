@@ -1,17 +1,28 @@
 GET http://localhost:3000/api/products
-
 ###
 
 GET http://localhost:3000/api/products/677afe3007ec6c336f84ada8
-
 ###
 
 POST http://localhost:3000/api/products
 Content-Type: application/json
 
 {
-    "name": "Table",
+    "name": "chair",
     "quantity": 20,
-    "price": 100
+    "price": 50
 }
+###
 
+PUT http://localhost:3000/api/products/677b0123fbfd14a29ee53b92
+Content-Type: application/json
+
+{
+    "name": "TV",
+    "quantity": 30,
+    "price": 400.99
+}
+###
+
+DELETE http://localhost:3000/api/products/677afe3007ec6c336f84ada8
+###
