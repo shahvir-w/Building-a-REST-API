@@ -26,3 +26,36 @@ Content-Type: application/json
 
 DELETE http://localhost:3000/api/products/677b0123fbfd14a29ee53b92
 ###
+
+GET http://localhost:3000/api/users
+###
+
+POST http://localhost:3000/api/users/signup
+Content-Type: application/json
+
+{
+    "username": "Mark",
+    "password": "Yeoo"
+}
+###
+
+POST http://localhost:3000/api/users/login
+Content-Type: application/json
+
+{
+    "username": "Henry",
+    "password": "password"
+}
+###
+
+PUT http://localhost:3000/api/users/677c8e02473d8af4d192a78b
+Content-Type: application/json
+
+{
+    "username": "Mark",
+    "password": "hey"
+}
+###
+
+DELETE http://localhost:3000/api/users/677bf689d5ae2920b065bd89
+###
