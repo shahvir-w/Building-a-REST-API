@@ -1,3 +1,4 @@
+// products
 GET http://localhost:3000/api/products
 ###
 
@@ -27,7 +28,9 @@ Content-Type: application/json
 DELETE http://localhost:3000/api/products/677b0123fbfd14a29ee53b92
 ###
 
-GET http://localhost:3000/api/users
+// users
+GET http://localhost:3000/api/users/677d9019d1d814342f209c80
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2Q5MDE5ZDFkODE0MzQyZjIwOWM4MCIsInVzZXJuYW1lIjoiTWFyayIsImlhdCI6MTczNjI4MzQ4MCwiZXhwIjoxNzM2Mjg3MDgwfQ.7usgaK4ifhhzeWrBdrtajRG51MJzVp2zIlxujvld2fc
 ###
 
 POST http://localhost:3000/api/users/signup
@@ -35,7 +38,7 @@ Content-Type: application/json
 
 {
     "username": "Mark",
-    "password": "Yeoo"
+    "password": "hey"
 }
 ###
 
@@ -43,8 +46,8 @@ POST http://localhost:3000/api/users/login
 Content-Type: application/json
 
 {
-    "username": "Henry",
-    "password": "password"
+    "username": "Mark",
+    "password": "hey"
 }
 ###
 
@@ -58,4 +61,14 @@ Content-Type: application/json
 ###
 
 DELETE http://localhost:3000/api/users/677bf689d5ae2920b065bd89
+###
+
+
+POST http://localhost:3000/api/users/login
+Content-Type: application/json
+
+{
+    "username": "Mark",
+    "password": "hey"
+}
 ###
