@@ -22,13 +22,13 @@ router.post('/login', loginUser);
 router.delete('/logout', logoutUser);
 
 // get user profile
-router.get('/:id', authenticateToken, getUser);
+router.get('/', getUser);
 
 // update a user
-router.put('/:id', authenticateToken, updateUser);
+router.put('/:id', updateUser);
 
 // delete a user
-router.delete('/:id', authenticateToken, deleteUser);
+router.delete('/:id', deleteUser);
 
 // create a new accessToken
 router.post('/token', createToken)

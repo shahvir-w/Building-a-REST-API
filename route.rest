@@ -1,56 +1,71 @@
 // products
+
+//view all products
 GET http://localhost:3000/api/products
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2VkMjE2ZGUxMDg0NzAxZWRhMjNkYSIsInVzZXJuYW1lIjoiSm9lIiwiaWF0IjoxNzM2MzY2MjQ3LCJleHAiOjE3MzYzNjk4NDd9.16KrFrVRLF5Yl7oPY4dldabkTpvVumcYw3otmFO3dW8
 ###
 
-GET http://localhost:3000/api/products/677b0123fbfd14a29ee53b92
+// view singular product
+GET http://localhost:3000/api/products/677b185508c8d50d8910a40e
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2VkMjE2ZGUxMDg0NzAxZWRhMjNkYSIsInVzZXJuYW1lIjoiSm9lIiwiaWF0IjoxNzM2MzY2MjQ3LCJleHAiOjE3MzYzNjk4NDd9.16KrFrVRLF5Yl7oPY4dldabkTpvVumcYw3otmFO3dW8
 ###
 
+// add product
 POST http://localhost:3000/api/products
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2VkMjE2ZGUxMDg0NzAxZWRhMjNkYSIsInVzZXJuYW1lIjoiSm9lIiwiaWF0IjoxNzM2MzY2MjQ3LCJleHAiOjE3MzYzNjk4NDd9.16KrFrVRLF5Yl7oPY4dldabkTpvVumcYw3otmFO3dW8
 Content-Type: application/json
 
 {
-    "name": "food",
-    "quantity": 8,
-    "price": 99
+    "name": "house",
+    "quantity": 4,
+    "price": 55
 }
 ###
 
-PUT http://localhost:3000/api/products/677b4441d50b18342a427178
+// update product
+PUT http://localhost:3000/api/products/677edb210758f94afcab3335
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2VkMjE2ZGUxMDg0NzAxZWRhMjNkYSIsInVzZXJuYW1lIjoiSm9lIiwiaWF0IjoxNzM2MzY2MjQ3LCJleHAiOjE3MzYzNjk4NDd9.16KrFrVRLF5Yl7oPY4dldabkTpvVumcYw3otmFO3dW8
 Content-Type: application/json
 
 {
-    "name": "laptop",
-    "quantity": 9,
+    "name": "house",
+    "quantity": 5,
     "price": 200
 }
 ###
 
+// delete a product
 DELETE http://localhost:3000/api/products/677b0123fbfd14a29ee53b92
 ###
 
 // users
-GET http://localhost:3000/api/users/677d9019d1d814342f209c80
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1hcmsiLCJpYXQiOjE3MzYyOTU0MDgsImV4cCI6MTczNjI5OTAwOH0.yMb2sk3VENVpg3CEr4cmsbXD7u1ThxkzAvR_U_p9VuQ
+
+// view user profile
+GET http://localhost:3000/api/users/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2VkMjE2ZGUxMDg0NzAxZWRhMjNkYSIsInVzZXJuYW1lIjoiSm9lIiwiaWF0IjoxNzM2MzY2MjQ3LCJleHAiOjE3MzYzNjk4NDd9.16KrFrVRLF5Yl7oPY4dldabkTpvVumcYw3otmFO3dW8
 ###
 
+// user signup
 POST http://localhost:3000/api/users/signup
 Content-Type: application/json
 
 {
-    "username": "Mark",
+    "username": "Joe",
     "password": "hey"
 }
 ###
 
+// user login
 POST http://localhost:3000/api/users/login
 Content-Type: application/json
 
 {
-    "username": "Mark",
+    "username": "Joe1",
     "password": "hey"
 }
 ###
 
+// user logout
 DELETE http://localhost:3000/api/users/logout
 Content-Type: application/json
 
@@ -59,21 +74,52 @@ Content-Type: application/json
 }
 ###
 
-PUT http://localhost:3000/api/users/677c8e02473d8af4d192a78b
+//update user
+PUT http://localhost:3000/api/users/677ed216de1084701eda23da
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2VkMjE2ZGUxMDg0NzAxZWRhMjNkYSIsInVzZXJuYW1lIjoiSm9lIiwiaWF0IjoxNzM2MzY2MjQ3LCJleHAiOjE3MzYzNjk4NDd9.16KrFrVRLF5Yl7oPY4dldabkTpvVumcYw3otmFO3dW8
 Content-Type: application/json
 
 {
-    "username": "Mark",
+    "username": "Joe1",
     "password": "hey"
 }
 ###
 
+// delete user
 DELETE http://localhost:3000/api/users/677bf689d5ae2920b065bd89
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1hcmsiLCJpYXQiOjE3MzYyOTU0MDgsImV4cCI6MTczNjI5OTAwOH0.yMb2sk3VENVpg3CEr4cmsbXD7u1ThxkzAvR_U_p9VuQ
 ###
 
+// create new access token
 POST http://localhost:3000/api/users/token
 Content-Type: application/json
 
 {
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2Q5MDE5ZDFkODE0MzQyZjIwOWM4MCIsInVzZXJuYW1lIjoiTWFyayIsImlhdCI6MTczNjI5NjQ1NH0.1vmYQSOS2NC02PSNzn9IR0MR8ytOA6DPKE3r3OonJMs"
 }
+###
+
+// cart
+
+GET http://localhost:3000/api/cart
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2VkMjE2ZGUxMDg0NzAxZWRhMjNkYSIsInVzZXJuYW1lIjoiSm9lMSIsImlhdCI6MTczNjM3MDEzMCwiZXhwIjoxNzM2MzczNzMwfQ.X5MJtm7rcqL3KAj4SqO1JTDGJ55rOmyhGwFUGXriJ5U
+###
+
+POST http://localhost:3000/api/cart
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2VkMjE2ZGUxMDg0NzAxZWRhMjNkYSIsInVzZXJuYW1lIjoiSm9lMSIsImlhdCI6MTczNjM3MDEzMCwiZXhwIjoxNzM2MzczNzMwfQ.X5MJtm7rcqL3KAj4SqO1JTDGJ55rOmyhGwFUGXriJ5U
+Content-Type: application/json
+
+{
+    "productId": "677edb210758f94afcab3335",
+    "quantity": 500
+}
+###
+
+DELETE http://localhost:3000/api/cart
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2VkMjE2ZGUxMDg0NzAxZWRhMjNkYSIsInVzZXJuYW1lIjoiSm9lMSIsImlhdCI6MTczNjM3MDEzMCwiZXhwIjoxNzM2MzczNzMwfQ.X5MJtm7rcqL3KAj4SqO1JTDGJ55rOmyhGwFUGXriJ5U
+Content-Type: application/json
+
+{
+    "productId": "677edb210758f94afcab3335"
+}
+###

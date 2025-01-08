@@ -79,8 +79,7 @@ const logoutUser = async (req, res) => {
 
 const getUser = async (req, res) => {
   try {
-    const { id } = req.params;
-    const user = await User.findById(id);
+    user = req.user;
     res.status(200).json(user);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -138,23 +137,6 @@ const createToken = async (req, res) => {
   });
 };
 
-// middleware
-const authenticateToken = (req, res, next) => {
-  const authHeader = req.headers["authorization"];
-  const token = authHeader && authHeader.split(" ")[1];
-  if (!token) {
-    return res.sendStatus(401);
-  }
-
-  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-    if (err) {
-      return res.status(403).json({ message: "Invalid token" });
-    }
-    req.user = user;
-    next();
-  });
-};
-
 function generateAccessToken(user) {
   return jwt.sign(
     { id: user._id, username: user.username },
@@ -170,6 +152,5 @@ module.exports = {
   getUser,
   updateUser,
   deleteUser,
-  authenticateToken,
   createToken,
 };
