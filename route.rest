@@ -30,7 +30,7 @@ DELETE http://localhost:3000/api/products/677b0123fbfd14a29ee53b92
 
 // users
 GET http://localhost:3000/api/users/677d9019d1d814342f209c80
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2Q5MDE5ZDFkODE0MzQyZjIwOWM4MCIsInVzZXJuYW1lIjoiTWFyayIsImlhdCI6MTczNjI4MzQ4MCwiZXhwIjoxNzM2Mjg3MDgwfQ.7usgaK4ifhhzeWrBdrtajRG51MJzVp2zIlxujvld2fc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1hcmsiLCJpYXQiOjE3MzYyOTU0MDgsImV4cCI6MTczNjI5OTAwOH0.yMb2sk3VENVpg3CEr4cmsbXD7u1ThxkzAvR_U_p9VuQ
 ###
 
 POST http://localhost:3000/api/users/signup
@@ -51,6 +51,14 @@ Content-Type: application/json
 }
 ###
 
+DELETE http://localhost:3000/api/users/logout
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2Q5MDE5ZDFkODE0MzQyZjIwOWM4MCIsInVzZXJuYW1lIjoiTWFyayIsImlhdCI6MTczNjI5NjQ1NH0.1vmYQSOS2NC02PSNzn9IR0MR8ytOA6DPKE3r3OonJMs"
+}
+###
+
 PUT http://localhost:3000/api/users/677c8e02473d8af4d192a78b
 Content-Type: application/json
 
@@ -63,12 +71,9 @@ Content-Type: application/json
 DELETE http://localhost:3000/api/users/677bf689d5ae2920b065bd89
 ###
 
-
-POST http://localhost:3000/api/users/login
+POST http://localhost:3000/api/users/token
 Content-Type: application/json
 
 {
-    "username": "Mark",
-    "password": "hey"
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2Q5MDE5ZDFkODE0MzQyZjIwOWM4MCIsInVzZXJuYW1lIjoiTWFyayIsImlhdCI6MTczNjI5NjQ1NH0.1vmYQSOS2NC02PSNzn9IR0MR8ytOA6DPKE3r3OonJMs"
 }
-###

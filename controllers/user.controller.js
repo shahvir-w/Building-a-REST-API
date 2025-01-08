@@ -1,5 +1,6 @@
 require("dotenv").config();
 
+const mongoose = require("mongoose");
 const User = require("../models/user.model.js");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -27,15 +28,50 @@ const loginUser = async (req, res) => {
 
     const isMatch = await bcrypt.compare(req.body.password, user.password);
     if (isMatch) {
-      const accessToken = jwt.sign(
+      const accessToken = generateAccessToken(user);
+      const refreshToken = jwt.sign(
         { id: user._id, username: user.username },
-        process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: "1h"}
+        process.env.REFRESH_TOKEN_SECRET
       );
-      res.status(200).json({ accessToken: accessToken, response: "success" });
+      res.status(200).json({
+        response: "success",
+        accessToken: accessToken,
+        refreshToken: refreshToken,
+      });
+
+      const refreshTokensCollection =
+        mongoose.connection.db.collection("refreshTokens");
+      await refreshTokensCollection.insertOne({
+        token: refreshToken,
+        createdAt: new Date(),
+      });
     } else {
       res.status(200).send("Unsuccessful");
     }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const logoutUser = async (req, res) => {
+  try {
+    const refreshToken = req.body.token;
+
+    if (!refreshToken) {
+      return res.status(400).json({ message: "Token required" });
+    }
+
+    const refreshTokensCollection =
+      mongoose.connection.db.collection("refreshTokens");
+    const tokenExists = await refreshTokensCollection.findOne({
+      token: req.body.token,
+    });
+    if (!tokenExists) {
+      return res.status(404).json({ message: "Token not found" });
+    }
+
+    await refreshTokensCollection.deleteOne({ token: refreshToken });
+    res.status(200).json({ message: "Logged out successfully" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -82,6 +118,27 @@ const deleteUser = async (req, res) => {
   }
 };
 
+const createToken = async (req, res) => {
+  const refreshToken = req.body.token;
+  if (!refreshToken) return res.sendStatus(401);
+  const refreshTokensCollection =
+    mongoose.connection.db.collection("refreshTokens");
+  const tokenExists = await refreshTokensCollection.findOne({
+    token: refreshToken,
+  });
+  if (!tokenExists) return res.sendStatus(403);
+
+  jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
+    if (err) return res.sendStatus(403);
+    const accessToken = generateAccessToken({
+      id: user._id,
+      username: user.username,
+    });
+    res.json({ accessToken: accessToken });
+  });
+};
+
+// middleware
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
@@ -95,15 +152,24 @@ const authenticateToken = (req, res, next) => {
     }
     req.user = user;
     next();
-  })
-}
+  });
+};
 
+function generateAccessToken(user) {
+  return jwt.sign(
+    { id: user._id, username: user.username },
+    process.env.ACCESS_TOKEN_SECRET,
+    { expiresIn: "1h" }
+  );
+}
 
 module.exports = {
   signupUser,
   loginUser,
+  logoutUser,
   getUser,
   updateUser,
   deleteUser,
-  authenticateToken
+  authenticateToken,
+  createToken,
 };
